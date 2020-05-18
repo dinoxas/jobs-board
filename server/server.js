@@ -25,9 +25,14 @@ const typeDefs = gql(fs.readFileSync('./schema.graphql', { encoding: 'utf8' }));
 
 const resolvers = require('./resolvers');
 
+// req is express request object - returns context obj used in resolvers
+// req.user set by express-jwt decoded from token
+const context = ({ req }) => ({ user: req.user && db.users.get(req.user.sub) });
+
 const apolloServer = new ApolloServer({
   typeDefs,
-  resolvers
+  resolvers,
+  context
 });
 
 // plug apollo server on express app
