@@ -1,3 +1,3 @@
-# GraphQL Job Board
+## Job Board
 
-Sample application used in the GraphQL by Example course.
+Job Board application using React and GraphQL
